@@ -10,8 +10,7 @@
     "dev": "node --watch server.js",
     "shell": "node shell.js",
     "test": "node --test test/",
-    "build:corpus": "node scripts/generate-corpus.js",
-    "prepare": "node scripts/ensure-data.js"
+    "build:corpus": "node scripts/generate-corpus.js"
   },
   "engines": {
     "node": ">=22.5"
@@ -27,4 +26,3 @@
   ],
   "license": "MIT"
 }
-
