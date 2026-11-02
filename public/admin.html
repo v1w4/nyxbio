@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>painel</title>
+<link rel="stylesheet" href="/style.css">
+<style id="custom-css"></style>
+<script src="/themes.js"></script>
+</head>
+<body>
+<main class="container">
+
+  <section class="card admin" id="login-box" hidden>
+    <h2>entrar</h2>
+    <p class="muted" style="margin-bottom:12px">senha definida no ADMIN_PASSWORD do .env</p>
+    <div class="field"><input type="password" id="pw" placeholder="senha do painel"></div>
+    <div class="row"><button class="btn" id="login-btn">entrar</button><span class="err" id="login-err"></span></div>
+  </section>
+
+  <div id="panel" hidden>
+
+    <section class="card admin">
+      <h2>tokens do mês</h2>
+      <p class="muted" id="usage-text"></p>
+      <div class="bar"><div id="usage-bar" style="width:0%"></div></div>
+    </section>
+
+    <div class="hint admin" id="empty-hint" hidden>
+      seu perfil está vazio. preencha os campos abaixo e clique em salvar. o site público aparece em <strong>/</strong>.
+    </div>
+
+    <section class="card admin">
+      <h2>perfil</h2>
+      <p class="muted">preencha e salve. as mudanças aparecem no site na hora.</p>
+
+      <h3>identidade</h3>
+      <div class="grid2">
+        <label class="field"><span>nome</span><input id="f-name" maxlength="40"></label>
+        <label class="field"><span>inicial do avatar</span><input id="f-initial" maxlength="2"></label>
+      </div>
+      <label class="field"><span>bio</span><input id="f-bio" maxlength="160"></label>
+      <label class="field"><span>frase (aparece no terminal)</span><input id="f-quote" maxlength="200"></label>
+      <div class="grid2">
+        <label class="field"><span>URL do avatar (opcional)</span><input id="f-avatar" placeholder="https://..."></label>
+        <label class="field"><span>ID do Discord</span><input id="f-discord" placeholder="só números"></label>
+      </div>
+
+      <h3>visual</h3>
+      <label class="field"><span>tema</span>
+        <select id="f-theme">
+          <option value="default">default</option>
+          <option value="lain">lain</option>
+          <option value="mrrobot">mr. robot</option>
+          <option value="cyber">cyber</option>
+          <option value="hacker">hacker</option>
+          <option value="cpp">c++</option>
+          <option value="python">python</option>
+          <option value="rust">rust</option>
+          <option value="js">javascript</option>
+          <option value="custom">custom (usa as cores abaixo)</option>
+        </select>
+      </label>
+      <div class="grid2">
+        <label class="field"><span>cor de fundo (#hex)</span><input id="f-bg" placeholder="#0b0b0f"></label>
+        <label class="field"><span>cor de destaque (#hex)</span><input id="f-accent" placeholder="#7c5cff"></label>
+      </div>
+      <label class="field"><span>cor do texto (#hex)</span><input id="f-text" placeholder="#eaeaf0"></label>
+      <label class="field"><span>GIF de fundo (URL)</span><input id="f-gif" placeholder="https://...gif"></label>
+      <label class="field"><span>música (URL de .mp3)</span><input id="f-music" placeholder="https://...mp3"></label>
+
+      <label class="field"><span>CSS personalizado (avançado: reestiliza o site, sem scripts)</span>
+        <textarea id="f-css" placeholder=".banner { height: 140px; }"></textarea>
+      </label>
+
+      <h3>links</h3>
+      <div id="links-list"></div>
+      <button class="btn ghost" id="add-link" type="button">+ adicionar link</button>
+
+      <h3>stack</h3>
+      <div id="stack-list"></div>
+      <button class="btn ghost" id="add-stack" type="button">+ adicionar item</button>
+
+      <div class="row">
+        <button class="btn" id="save-btn">salvar perfil</button>
+        <span id="save-msg"></span>
+      </div>
+
+      <details>
+        <summary>modo avançado (JSON)</summary>
+        <textarea id="json" style="margin-top:10px"></textarea>
+        <div class="row"><button class="btn ghost" id="save-json" type="button">salvar JSON</button></div>
+      </details>
+    </section>
+
+    <section class="card admin">
+      <h2>Nyx (assistente)</h2>
+      <p class="muted">peça mudanças em linguagem natural. ex: "muda o tema pra rust e adiciona meu blog".</p>
+      <div class="chat-log" id="chat-log"></div>
+      <form id="chat-form">
+        <div class="field"><input id="chat-input" placeholder="escreva aqui..." autocomplete="off"></div>
+        <div class="row"><button class="btn" type="submit" id="chat-btn">enviar</button><span class="err" id="chat-err"></span></div>
+      </form>
+    </section>
+
+    <section class="card admin guide">
+      <h2>guia rápido</h2>
+      <p><strong>Discord:</strong> entre em discord.gg/lanyard e coloque seu ID. O círculo do avatar muda sozinho (verde, amarelo, vermelho, cinza).</p>
+      <p><strong>Temas:</strong> escolha um pronto ou use <em>custom</em> com cores hex.</p>
+      <p><strong>GIF e música:</strong> cole a URL. Para música, use um .mp3 acessível pela internet.</p>
+      <p><strong>Links e stack:</strong> o botão × remove. Só entram os itens com nome e URL preenchidos.</p>
+    </section>
+
+    <section class="card admin">
+      <h2>histórico</h2>
+      <div id="history" class="muted"></div>
+    </section>
+
+    <div class="row" style="justify-content:center">
+      <a href="/" style="color:var(--accent);font-size:14px">ver site</a>
+      <button class="btn ghost" id="logout-btn">sair</button>
+    </div>
+  </div>
+</main>
+<script src="/admin.js"></script>
+</body>
+</html>

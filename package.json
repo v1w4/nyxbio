@@ -1,0 +1,30 @@
+{
+  "name": "nyxbio",
+  "version": "2.0.0",
+  "description": "Nyx — site de perfil pessoal (estilo bio-link) com assistente de IA do zero, temas, GIF de fundo, música, shell, discord presence e painel admin.",
+  "private": true,
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "shell": "node shell.js",
+    "test": "node --test test/",
+    "build:corpus": "node scripts/generate-corpus.js",
+    "prepare": "node scripts/ensure-data.js"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "keywords": [
+    "bio-link",
+    "personal-site",
+    "ai",
+    "transformer",
+    "cyberpunk",
+    "discord-presence",
+    "node"
+  ],
+  "license": "MIT"
+}
+

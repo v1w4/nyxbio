@@ -1,0 +1,1 @@
+/* Empty file to ensure scripts directory is tracked */

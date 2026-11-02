@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Nyx — perfil pessoal e assistente de IA cyberpunk.">
+<meta name="theme-color" content="#0b0b0f">
+<meta property="og:title" content="Nyx — perfil pessoal">
+<meta property="og:description" content="Perfil pessoal com assistente de IA, temas e presença no Discord.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://nyxbio.example.com/og.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nyx — perfil pessoal">
+<meta name="twitter:description" content="Perfil pessoal e assistente de IA ciberpunk.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<link rel="manifest" href="/manifest.json">
+<title>Nyx</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style-extra.css">
+<style id="custom-css"></style>
+<script src="/themes.js"></script>
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<main class="container">
+  <section class="card profile reveal">
+    <div class="banner"></div>
+    <div class="profile-body">
+      <div class="avatar-wrap">
+        <div class="avatar" id="avatar"></div>
+        <span class="dot" id="dot"></span>
+      </div>
+      <h1 class="glitch" id="name"></h1>
+      <p class="bio" id="bio"></p>
+      <p class="presence" id="presence"></p>
+    </div>
+  </section>
+
+  <section class="card reveal">
+    <div class="ai-bar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-16 0"/><circle cx="12" cy="12" r="3"/></svg>
+      <span>Nyx pode te ajudar! Pergunte em português.</span>
+      <button id="ai-toggle" class="btn ghost small">ativa assistente</button>
+    </div>
+  </section>
+
+  <section class="card reveal" id="ai-card" hidden>
+    <div class="ai-header">
+      <h2>Nyx</h2>
+      <button id="ai-reset" class="btn ghost small">limpar conversa</button>
+      <span class="ai-dot" id="ai-dot"></span>
+    </div>
+    <div class="chat-log" id="chat-log"></div>
+    <form id="ai-form">
+      <div class="field">
+        <input id="ai-input" placeholder="ex: muda o tema pra rust e adiciona meu blog..." autocomplete="off" spellcheck="false">
+        <div class="ai-suggestions">
+          <button type="button" class="sug" data-sug="muda o tema pra rust">muda o tema pra rust</button>
+          <button type="button" class="sug" data-sug="adiciona meu blog">adiciona meu blog</button>
+          <button type="button" class="sug" data-sug="fala sobre c++">fala sobre c++</button>
+        </div>
+      </div>
+      <div class="row">
+        <button type="button" id="ai-mic" class="btn ghost">🎤 voz</button>
+        <button type="submit" id="ai-send" class="btn">enviar</button>
+      </div>
+    </form>
+    <p class="ai-hint">parte de <b>Nyx</b> — um modelo de IA local, zero chave de API.</p>
+  </section>
+
+  <section class="card reveal">
+    <p class="section-title">links</p>
+    <div id="links"></div>
+  </section>
+
+  <section class="card reveal" id="stack-card" hidden>
+    <p class="section-title">stack</p>
+    <div class="chips" id="stack"></div>
+  </section>
+
+  <section class="card reveal" id="term-card">
+    <div id="term"></div>
+  </section>
+
+  <section class="card reveal" id="music-card" hidden>
+    <p class="section-title">trilha</p>
+    <button class="btn" id="play">▶ tocar</button>
+    <audio id="audio" preload="none"></audio>
+  </section>
+
+  <footer>
+    <span id="views"></span>
+  </footer>
+</main>
+<script src="/app.js"></script>
+<script src="/ai.js"></script>
+</body>
+</html>

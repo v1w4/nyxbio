@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Cache static assets for a week
+Disallow: /api/
+Crawl-delay: 2
