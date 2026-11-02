@@ -153,4 +153,4 @@ function generatePreview(snapshot) {
   ].join('\n');
 }
 
-export { processAIMsg, generatePreview };
+export { generatePreview };
