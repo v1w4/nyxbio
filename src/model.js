@@ -14,47 +14,6 @@ const randn = () => {
   return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
 };
 
-const positionEncoding = (seqLen, d) => {
-  const pe = new Float32Array(seqLen * d);
-  for (let i = 0; i < seqLen; i++)
-    for (let j = 0; j < d; j++)
-      pe[i * d + j] = Math.sin(i / Math.pow(10000, (j * 2) / d));
-  return pe;
-};
-
-const softmax = (arr) => {
-  let mx = -Infinity;
-  for (const v of arr) if (v > mx) mx = v;
-  let s = 0;
-  for (let i = 0; i < arr.length; i++) { arr[i] = Math.exp(arr[i] - mx); s += arr[i]; }
-  for (let i = 0; i < arr.length; i++) arr[i] /= s;
-  return arr;
-};
-
-const sample = (dist, topK) => {
-  const pool = Array.from({ length: dist.length }, (_, i) => i)
-    .slice(0, Math.min(topK, dist.length));
-  const p = pool.map(i => dist[i]);
-  const s = p.reduce((a, b) => a + b, 0);
-  const r = Math.random() * s;
-  let acc = 0;
-  for (let i = 0; i < pool.length; i++) {
-    acc += p[i] / s;
-    if (r <= acc) return pool[i];
-  }
-  return pool[pool.length - 1];
-};
-
-/**
- * src/model.js - Nyx IA do zero: transformer completo e funcional.
- * Zero dependência externa, zero API key. Modelo local com ~2M de tokens conceituais.
- * Geração de texto, handshake de tool-use (update_profile), e streaming.
- * Paralelismo interno, geração eficiente de embeddings, e transformer de camadas múltiplas.
- * Otimizado para CI/CD e deploy via Render/GitHub.
- */
-/*
-
-
 /** Encodimento posicional de fórmulas de seno (PE) */
 const positionEncoding = (seqLen, d) => {
   const pe = new Float32Array(seqLen * d);
@@ -96,12 +55,6 @@ const oneHot = (idx, n) => {
   o[idx] = 1;
   return o;
 };
-
-/** Funções de ajuda internas */
-const createSeededRNG = (seed) => {
-  let st = 0;
-  const str = String(seed); for (let i = 0; i < str.length; i++) st = (st * 31 + str.charCodeAt(i)) & 0xffffffff;
-  return { next: () => { st = (st * 1664525 + 1013904223) & 0xffffffff; return st / 0x7fffffff; } };\n};
 
 export class Model {
   constructor(corpus = null, options = {}) {
@@ -266,6 +219,5 @@ function makeBlock(d, nHeads, ffDim) {
   for (let i = 0; i < Wq.length; i++) { Wq[i] = randn(); Wk[i] = randn(); Wv[i] = randn(); Wo[i] = randn(); W1[i] = randn(); W2[i] = randn(); }
   return (x) => blockForward(x, d, nHeads, ffDim, Wq, Wk, Wv, Wo, W1, W2);
 }
-
 
 export const __version__ = '2.0.0';
